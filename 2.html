@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos de Java</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Conceptos Fundamentales de Java</h1>
+        <p>Un recorrido por los pilares de la programación orientada a objetos.</p>
+    </header>
+
+    <nav>
+        <a href="#estructuras-control">Estructuras de Control</a>
+        <a href="#clases-objetos-metodos">Clases, Objetos y Métodos</a>
+        <a href="#pilares-conceptos-avanzados">Pilares y Conceptos Avanzados</a>
+    </nav>
+
+    <main>
+        <section id="estructuras-control">
+            <h2>Estructuras de Control</h2>
+            <p>Aprende a controlar el flujo de tu programa con los bucles más comunes en Java.</p>
+            <details class="interactive-button">
+                <summary>Bucle while</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> El bucle `while` se utiliza para repetir un bloque de código mientras una condición específica sea verdadera. Es ideal cuando no sabes de antemano cuántas veces se ejecutará el bucle.</p>
+                    <p><strong>Sintaxis:</strong></p>
+                    <pre class="java-code">
+while (condicion) {
+    // Código a ejecutar mientras la condición sea verdadera
+}
+                    </pre>
+                    <p><strong>Ejemplo Práctico:</strong> Un contador de 1 a 10.</p>
+                    <pre class="java-code">
+public class Contador {
+    public static void main(String[] args) {
+        int i = 1;
+        while (i <= 10) {
+            System.out.println("Número: " + i);
+            i++;
+        }
+    }
+}
+                    </pre>
+                    <p><strong>Diagrama de Flujo:</strong></p>
+                    <p>
+
+[Image of flowchart for a while loop]
+</p>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Bucle do-while</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> A diferencia del bucle `while`, el bucle `do-while` garantiza que el bloque de código se ejecute al menos una vez, ya que la condición se evalúa después de la ejecución.</p>
+                    <p><strong>Sintaxis:</strong></p>
+                    <pre class="java-code">
+do {
+    // Código a ejecutar al menos una vez
+} while (condicion);
+                    </pre>
+                    <p><strong>Ejemplo Práctico:</strong> Un menú que se repite hasta que el usuario elige "salir".</p>
+                    <pre class="java-code">
+import java.util.Scanner;
+
+public class Menu {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        do {
+            System.out.println("1. Opción A");
+            System.out.println("2. Opción B");
+            System.out.println("3. Salir");
+            System.out.print("Elija una opción: ");
+            opcion = scanner.nextInt();
+        } while (opcion != 3);
+        System.out.println("Saliendo del programa...");
+        scanner.close();
+    }
+}
+                    </pre>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Bucle for</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> El bucle `for` es ideal para iteraciones con un número conocido de repeticiones. Combina la inicialización, la condición y el incremento en una sola línea, lo que lo hace muy conciso.</p>
+                    <p><strong>Sintaxis:</strong></p>
+                    <pre class="java-code">
+for (inicializacion; condicion; incremento) {
+    // Código a ejecutar
+}
+                    </pre>
+                    <p><strong>Ejemplo Práctico:</strong> Recorrer e imprimir los elementos de un array.</p>
+                    <pre class="java-code">
+public class RecorrerArray {
+    public static void main(String[] args) {
+        String[] frutas = {"Manzana", "Naranja", "Pera"};
+        for (int i = 0; i < frutas.length; i++) {
+            System.out.println("Fruta: " + frutas[i]);
+        }
+    }
+}
+                    </pre>
+                </div>
+            </details>
+        </section>
+
+        <section id="clases-objetos-metodos">
+            <h2>Clases, Objetos y Métodos</h2>
+            <p>Modelando el mundo real en el código: una analogía del "molde" y las "galletas".</p>
+            <details class="interactive-button">
+                <summary>Clases y Objetos</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Una clase es un <strong>molde</strong> o plantilla para crear objetos. Un objeto es una <strong>instancia</strong> concreta de una clase.</p>
+                    <p><strong>Ejemplo Práctico:</strong></p>
+                    <pre class="java-code">
+// Clase Coche (el molde)
+public class Coche {
+    String marca;
+    String color;
+    int velocidad;
+
+    public Coche(String marca, String color) {
+        this.marca = marca;
+        this.color = color;
+        this.velocidad = 0;
+    }
+
+    public void acelerar(int aumento) {
+        this.velocidad += aumento;
+    }
+}
+
+// Creación de objetos (las galletas)
+public class Garaje {
+    public static void main(String[] args) {
+        Coche miCoche = new Coche("Ford", "Rojo");
+        Coche otroCoche = new Coche("Honda", "Azul");
+        
+        miCoche.acelerar(50);
+        System.out.println("Mi coche es un " + miCoche.marca + " de color " + miCoche.color + ".");
+    }
+}
+                    </pre>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Métodos y Sobrecarga</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Los métodos definen el <strong>comportamiento</strong> de un objeto. La <strong>sobrecarga</strong> permite tener varios métodos con el mismo nombre, pero con diferentes parámetros.</p>
+                    <p><strong>Ejemplo Práctico:</strong></p>
+                    <pre class="java-code">
+public class Calculadora {
+    // Suma de dos enteros
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+
+    // Sobrecarga: suma de dos números decimales
+    public double sumar(double a, double b) {
+        return a + b;
+    }
+}
+                    </pre>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Modificador static</summary>
+                <div class="content">
+                    <p><strong>Explicación:</strong> Un miembro `static` pertenece a la <strong>clase</strong> y no a una instancia específica (objeto). Se accede directamente a través del nombre de la clase.</p>
+                    <p><strong>Ejemplo Práctico:</strong> Un contador de instancias.</p>
+                    <pre class="java-code">
+public class ObjetoContable {
+    public static int contadorDeInstancias = 0;
+
+    public ObjetoContable() {
+        contadorDeInstancias++;
+    }
+
+    public static void mostrarContador() {
+        System.out.println("Se han creado " + contadorDeInstancias + " objetos.");
+    }
+}
+                    </pre>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Clases Locales (Local Classes)</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Son clases que se definen dentro de un bloque de código, como un método o un constructor. Su alcance está limitado a ese bloque.</p>
+                    <p><strong>Ejemplo Práctico:</strong></p>
+                    <pre class="java-code">
+public class Tarea {
+    public void ejecutarTareaEspecifica() {
+        class TareaInterna { // Clase local
+            void mostrarMensaje() {
+                System.out.println("Mensaje de la tarea interna.");
+            }
+        }
+        TareaInterna tarea = new TareaInterna();
+        tarea.mostrarMensaje();
+    }
+}
+                    </pre>
+                </div>
+            </details>
+        </section>
+
+        <section id="pilares-conceptos-avanzados">
+            <h2>Pilares y Conceptos Avanzados</h2>
+            <p>Construyendo software robusto y modular con principios clave de la programación.</p>
+            <details class="interactive-button">
+                <summary>Encapsulamiento</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Es el principio de ocultar los datos (atributos) de un objeto y solo exponer su comportamiento (métodos). Se logra usando modificadores de acceso como `private`.</p>
+                    <p><strong>Ejemplo Práctico:</strong> Una cuenta bancaria con saldo privado.</p>
+                    <pre class="java-code">
+public class CuentaBancaria {
+    private double saldo;
+
+    public CuentaBancaria(double saldoInicial) {
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double monto) {
+        if (monto > 0) {
+            this.saldo += monto;
+            System.out.println("Depósito exitoso. Saldo actual: " + this.saldo);
+        }
+    }
+
+    public void retirar(double monto) {
+        if (monto > 0 && monto <= this.saldo) {
+            this.saldo -= monto;
+            System.out.println("Retiro exitoso. Saldo actual: " + this.saldo);
+        } else {
+            System.out.println("Fondos insuficientes o monto no válido.");
+        }
+    }
+}
+                    </pre>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Composición</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Es la relación "tiene un" (`has-a`). Un objeto se compone de otros objetos, no los hereda. Esto fomenta el reuso de código y el diseño modular.</p>
+                    <p><strong>Ejemplo Práctico:</strong> Un coche "tiene un" motor.</p>
+                    <pre class="java-code">
+// Clase Motor
+public class Motor {
+    public void encender() {
+        System.out.println("Motor encendido.");
+    }
+}
+
+// Clase Coche que tiene un Motor
+public class Coche {
+    private Motor motor; // El Coche tiene un Motor
+
+    public Coche() {
+        this.motor = new Motor();
+    }
+
+    public void arrancar() {
+        motor.encender(); // Delega la tarea de encender al objeto Motor
+    }
+}
+                    </pre>
+                    <p><strong>Diagrama UML:</strong></p>
+                    <p></p>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Delegación</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Un objeto delega una tarea o una petición a otro objeto. Es una alternativa a la herencia que promueve un acoplamiento más flexible.</p>
+                    <p><strong>Ejemplo Práctico:</strong> Un gerente delega la tarea de imprimir a una impresora.</p>
+                    <pre class="java-code">
+// Clase con la lógica de impresión
+public class Impresora {
+    public void imprimir(String documento) {
+        System.out.println("Imprimiendo: " + documento);
+    }
+}
+
+// Clase que delega la tarea
+public class Gerente {
+    private Impresora impresora;
+
+    public Gerente() {
+        this.impresora = new Impresora();
+    }
+
+    public void imprimirReporte(String reporte) {
+        System.out.println("Gerente solicita imprimir un reporte.");
+        impresora.imprimir(reporte); // Delegación de la tarea
+    }
+}
+                    </pre>
+                </div>
+            </details>
+
+            <details class="interactive-button">
+                <summary>Clases Envoltorio (Wrapper Classes)</summary>
+                <div class="content">
+                    <p><strong>Definición:</strong> Son clases que "envuelven" los tipos de datos primitivos (como `int`, `double`) para poder tratarlos como objetos. Son necesarias, por ejemplo, para usarlas en colecciones como `ArrayList`.</p>
+                    <p><strong>Ejemplo Práctico:</strong> Autoboxing y unboxing.</p>
+                    <pre class="java-code">
+import java.util.ArrayList;
+
+public class Envoltorios {
+    public static void main(String[] args) {
+        // Autoboxing: int (primitivo) a Integer (objeto)
+        int numeroPrimitivo = 10;
+        Integer numeroObjeto = numeroPrimitivo; // Java lo convierte automáticamente
+        System.out.println("Número primitivo: " + numeroPrimitivo);
+        System.out.println("Número objeto: " + numeroObjeto);
+
+        // Unboxing: Integer (objeto) a int (primitivo)
+        int otroNumero = numeroObjeto; // Java lo convierte automáticamente
+        System.out.println("Otro número (desempaquetado): " + otroNumero);
+
+        // Ejemplo con ArrayList
+        ArrayList<Integer> listaDeNumeros = new ArrayList<>();
+        listaDeNumeros.add(20); // Autoboxing: se convierte 20 (int) a Integer
+    }
+}
+                    </pre>
+                </div>
+            </details>
+        </section>
+    </main>
+</body>
+</html>
